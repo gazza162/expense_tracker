@@ -262,10 +262,11 @@
             <option value="Groceries">Groceries</option>
             <option value="Meals / Eating out">Meals / Eating out</option>
             <option value="Chai / Coffee">Chai / Coffee</option>
-            <option value="Alcohol / Partying">Alcohol / Partying</option>
             <option value="Fitness / Gym">Fitness / Gym</option>
+            <option value="Classes / Lessons">Classes / Lessons</option>
             <option value="Transport">Transport</option>
             <option value="Shopping">Shopping</option>
+            <option value="Vice">Vice</option>
             <option value="Misc / Other">Misc / Other</option>
           </select>
         </div>
@@ -378,15 +379,31 @@
       const rules = [
         { cat: "Chai / Coffee", kws: ["chai","coffee","tea","latte","cappuccino","espresso"] },
         { cat: "Meals / Eating out", kws: ["jevan","lunch","dinner","hotel","restaurant","biryani","thali","swiggy","zomato","meal"] },
-        { cat: "Alcohol / Partying", kws: ["daaru","beer","vodka","rum","gin","wine","bar","pub","party"] },
-        { cat: "Cigarettes / Smoking", kws: ["cig","cigs","cigarette","bidi","beedi","smoke"] },
+        {
+          cat: "Vice",
+          kws: [
+            "beer","vodka","rum","gin","wine","bar","pub","party","daaru",
+            "cig","cigs","cigarette","bidi","beedi","smoke"
+          ]
+        },
         { cat: "Fitness / Gym", kws: ["gym","yoga","workout","fitness"] },
+        {
+          cat: "Classes / Lessons",
+          kws: [
+            "class","classes","lesson","lessons","tuition","music class",
+            "sitar","guitar","piano","violin","tennis","football",
+            "coaching","course","workshop"
+          ]
+        },
         { cat: "Transport", kws: ["uber","ola","taxi","auto","rickshaw","bus","metro","train","petrol","diesel","fuel","parking","toll"] },
         { cat: "Groceries", kws: ["kirana","sabzi","vegetable","fruit","fruits","d mart","supermarket","grocery"] },
         { cat: "Shopping", kws: ["amazon","flipkart","myntra","nykaa","clothes","shoes","shirt","jeans"] },
       ];
-      for (const r of rules) for (const k of r.kws)
-        if (text.includes(k)) return r.cat;
+      for (const r of rules) {
+        for (const k of r.kws) {
+          if (text.includes(k)) return r.cat;
+        }
+      }
       return "Misc / Other";
     }
 
